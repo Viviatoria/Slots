@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- slots.html                             Slots -->
+<!-- Web page that simulates a simple slot machine -->
+
+<html>
+ <head>
+   <title>Lucky Slots</title>
+   <script src="http://compsciconcepts.com/random.js"></script>
+   <script>
+     function slotSpin() {
+        numCredits = Number(creditSpan.innerHTML);
+        if(numCredits<=0){
+            alert("Sorry, you are out of spin credits.");
+            return;
+        }
+            
+        spin1 = RandomOneOf(['moon', 'sun', 'cloud', 'star']);
+        spin2 = RandomOneOf(['moon', 'sun', 'cloud', 'star']);
+        spin3 = RandomOneOf(['moon', 'sun', 'cloud', 'star']);
+        
+
+        slot1Img.src = 'images/' + spin1 + '.png';
+        slot2Img.src = 'images/' + spin2 + '.png';
+        slot3Img.src = 'images/' + spin3 + '.png';
+                  
+        imgCheck();
+     }
+       function checkCredits() {
+        if(numCredits<=0){
+            alert("Sorry, you are out of spin credits.");
+            return;
+        }
+           else {
+             creditSpan.innerHTML = Number(creditSpan.innerHTML) - 1;  
+           }
+       }
+       
+       function imgCheck() {
+           if (spin1==spin2&&spin1==spin3&&spin2==spin3) {
+               alert("Congratulations - YOU WON!!");
+           }
+           else {
+               checkCredits();
+           }
+       }
+   </script>
+ </head>
+
+ <body style="text-align:center">
+     <h1 style="color:#404040">✦ Lucky Slot Machine ✦</h1>
+   <p>
+     <img id="slot1Img" alt="moon" width=200 style="border:2px solid #717171" src="images/moon.png">
+     <img id ="slot2Img" alt="cloud" width=200 style="border:2px solid #717171" src="images/cloud.png">
+     <img id="slot3Img" alt="star" width=200 style="border:2px solid #717171" src="images/star.png">
+   </p>
+   <p>
+     <button onclick="slotSpin();">Click to Spin</button>
+   </p>
+     
+   <p style="color:#c5aeff">Spin Credits: <span id="creditSpan">5</span></p>    
+ </body>
+</html>
